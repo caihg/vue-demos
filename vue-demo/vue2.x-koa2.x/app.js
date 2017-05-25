@@ -15,11 +15,13 @@ koa.use(json());
 koa.use(logger());
 koa.use(historyApiFallback());
 
-koa.use(async (ctx, next) => {
+koa.use(async (ctx, next) => { // ctx 封装了node 中的 request 和 response
   let start = new Date();
   await next();
   let ms = new Date - start;
   console.log('%s %s - %s', this.method, this.url, ms);
+  console.log('ctx.body 是 ctx.response.body 的简写', '=>', ctx.body === ctx.response.body);
+  console.log('ctx.request.body 获取 post 请求中的参数', '=>', ctx.request.body);
 });
 
 koa.on('error', function(err, ctx) {
