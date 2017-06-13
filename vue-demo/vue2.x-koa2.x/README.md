@@ -1,6 +1,6 @@
 # vue2.x-koa2.x
 
-> Vue.js 与 Koa.js 的练习项目
+> Vue.js 与 Koa.js 的练习项目：一个基础的后台管理系统
 
 ## 步骤
 
