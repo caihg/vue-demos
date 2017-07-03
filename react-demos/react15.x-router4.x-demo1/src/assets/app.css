@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.login-wrap {
+  width: 290px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-wrap h2 {
+  text-align: center;
+}
+
+.field-box {
+  margin-bottom: 20px;
+}
+
+.field-box label,
+.field-box input {
+  box-sizing: border-box;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.control-label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+.field-box input {
+  width: 200px;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+header {
+  background-color: #f9fafb;
+  box-shadow: 0 2px 5px #ccc;
+}
+header h1 {
+  display: inline-block;
+  margin: .4em 1em .5em 1em;
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+header a {
+  margin: 0 10px;
+  color: #000;
+  text-decoration: none;
+  vertical-align: middle;
+}
+header .router-link-active {
+  color: red;
+}
+header strong {
+  display: inline-block;
+  margin-top: 1.3em;
+}
+
+header .active {
+  color: #f00;
+}
+
+.header-info {
+  display: inline-block;
+  margin-top: 1em;
+  margin-right: 2em;
+}
+
+.header-info .logout {
+  cursor: pointer;
+}
+
+.header-info .logout:hover {
+  color: #ffa500;
+}
+
+.main-layout {
+  margin-top: 65px;
+}
+
+.home {
+  text-align: center;
+}
+
+.logo {
+  height: 80px;
+  animation: app-logo-spin infinite 20s linear;
+}
+
+@keyframes app-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.aside-nav {
+  float: left;
+  width: 120px;
+  margin: 0 50px 0 0;
+  padding-left: 0;
+  background-color: #fafbfc;
+}
+
+.aside-nav a {
+  display: block;
+  margin-bottom: 5px;
+  padding: 4px 0 5px;
+  color: #555;
+  text-align: center;
+  text-decoration: none;
+}
+
+.aside-nav .active {
+  color: #fff;
+  background-color: orange;
+}
+
+.aside-container {
+  float: left;
+}
