@@ -2,7 +2,6 @@ const path = require('path'),
   koa = new (require('koa'))(),
   koaRouter = require('koa-router')(),
   bodyparser = require('koa-bodyparser'), // 对于 POST 请求，将 koa2 上下文的 formData 数据解析到 ctx.request.body
-  json = require('koa-json'), // 格式化服务端返回的 JSON 数据
   logger = require('koa-logger'), // 日志中间件
   koaStatic = require('koa-static'),
   historyApiFallback = require('koa-history-api-fallback'),
@@ -11,7 +10,6 @@ const path = require('path'),
   goods = require('./server/routes/goods.js');
 
 koa.use(bodyparser());
-koa.use(json());
 koa.use(logger());
 koa.use(historyApiFallback());
 
