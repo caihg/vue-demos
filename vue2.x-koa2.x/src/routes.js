@@ -47,11 +47,7 @@ export default [
             component: GoodsList
           },
           {
-            path: 'management',
-            component: GoodsManagement
-          },
-          {
-            path: 'management/:id',
+            path: 'management/:id?', // 匹配 /management 和 /management/x 两种情况
             component: GoodsManagement
           }
         ]
