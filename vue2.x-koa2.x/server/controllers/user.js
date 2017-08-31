@@ -38,10 +38,19 @@ const postUserAuth = async function() {
 const getUserInfo = async function() {
   const id = this.params.id; // 获取 url 里传过来的参数里的 id
   const result = await userModel.getUserById(id);
-  this.body = {
-    success: true,
-    list: [result],
-    msg: '获取用户成功！'
+
+  if (result) {
+    this.body = {
+      success: true,
+      list: [result],
+      msg: '获取用户成功！'
+    }
+  } else {
+    this.body = {
+      success: false,
+      list: [],
+      msg: '用户不存在！'
+    }
   }
 }
 

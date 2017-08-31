@@ -34,13 +34,13 @@ export default {
   created() {
     this.getUserList();
 
-    this.$http.get('/auth/user/1')
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          this.$message.error('网络错误！');
-        });
+    this.$http.get('/auth/user/2')
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        this.$message.error('网络错误！');
+      });
   },
   methods: {
     getUserList() {
