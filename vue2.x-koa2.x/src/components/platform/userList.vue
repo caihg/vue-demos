@@ -33,10 +33,18 @@ export default {
   },
   created() {
     this.getUserList();
+
+    this.$http.get('/auth/user/1')
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          this.$message.error('网络错误！');
+        });
   },
   methods: {
     getUserList() {
-      this.$http.post('/auth/user/list')
+      this.$http.get('/auth/user/list')
         .then(response => {
           const data = response && response.data;
           const list = data && data.list;
@@ -48,7 +56,8 @@ export default {
           } else {
             this.$message.error('获取用户列表失败！');
           }
-        }, error => {
+        })
+        .catch(error => {
           this.loading = false;
           this.$message.error('网络错误！');
         });
