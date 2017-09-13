@@ -6,7 +6,7 @@
       {{ model.menuName }}
     </span>
     <ul v-show="open" v-if="isFolder">
-      <tree-menu v-for="item in model.children" :model="item"></tree-menu>
+      <tree-menu v-for="item in model.children" :key="item.id" :model="item"></tree-menu>
     </ul>
   </li>
 </template>
@@ -17,12 +17,11 @@ export default {
   props: ['model'],
   data() {
     return {
-      open: false,
-      isFolder: true
+      open: false
     }
   },
   computed: {
-    isFolder: function() {
+    isFolder() {
       return this.model.children && this.model.children.length
     }
   },
