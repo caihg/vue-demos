@@ -8,7 +8,8 @@ const getGoodsList = async (searchVal) => {
         name: {
           $like: '%' + searchVal + '%'  // searchVal：要搜索的商品名称
         }
-      }
+      },
+      order: 'id desc' // 根据 id 倒序
     }
   );
 }
