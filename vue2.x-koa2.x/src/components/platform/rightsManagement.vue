@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul v-for="menuItem in theModel">
-      <my-tree :model="menuItem"></my-tree>
+    <ul>
+      <my-tree v-for="menuItem in theModel" :model="menuItem"></my-tree>
     </ul>
   </div>
 </template>
@@ -78,7 +78,7 @@ var myData = [
   }
 ];
 
-import myTree from '../common/treeMenu/treeMenu.vue'
+import myTree from '../common/treeMenu.vue'
 export default {
   components: {
     myTree

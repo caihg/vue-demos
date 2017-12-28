@@ -5,9 +5,9 @@ const path = require('path'),
   logger = require('koa-logger'), // 日志中间件
   koaStatic = require('koa-static'),
   historyApiFallback = require('koa-history-api-fallback'),
-  userRoute = require('./server/routes/user.js'),
-  goodsRoute = require('./server/routes/goods.js'),
-  imageRoute = require('./server/routes/image.js');
+  userRoute = require('./routes/user.js'),
+  goodsRoute = require('./routes/goods.js'),
+  imageRoute = require('./routes/image.js');
 
 koa.use(bodyparser());
 koa.use(logger());

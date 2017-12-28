@@ -1,11 +1,11 @@
 {
   "name": "vue2.x-koa2.x",
-  "version": "1.0.0",
-  "description": "A Vue.js and Koa project",
-  "author": "caihuaguang@aixuedai.com <caihuaguang@aixuedai.com>",
+  "version": "0.0.1",
+  "description": "A Vue and Koa project",
+  "author": "",
   "private": true,
   "scripts": {
-    "server": "node app.js",
+    "server": "node server/start.js",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"
   },

@@ -1,12 +1,12 @@
 <template>
   <li>
     <span @click="toggle">
-      <i v-if="isFolder" class="icon" :class="[open ? 'folder-open': 'folder']"></i>
+      <i v-if="isFolder" class="icon" :class="[isOpen ? 'folder-open': 'folder']"></i>
       <!-- isFolder 判断是否存在子级，以便改变图标 -->
       <i v-if="!isFolder" class="icon file-text"></i>
       {{ model.menuName }}
     </span>
-    <ul v-show="open" v-if="isFolder">
+    <ul v-show="isOpen" v-if="isFolder">
       <tree-menu v-for="item in model.children" :model="item"></tree-menu>
     </ul>
   </li>
@@ -18,7 +18,7 @@ export default {
   props: ['model'],
   data() {
     return {
-      open: false
+      isOpen: false
     }
   },
   computed: {
@@ -29,7 +29,7 @@ export default {
   methods: {
     toggle: function() {
       if (this.isFolder) {
-        this.open = !this.open
+        this.isOpen = !this.isOpen
       }
     }
   }
@@ -45,12 +45,12 @@ i.icon {
   vertical-align: middle;
 }
 .icon.folder {
-  background-image: url(./../../../assets/img/folder.png);
+  background-image: url(./../../assets/img/folder.png);
 }
 .icon.folder-open {
-  background-image: url(./../../../assets/img/folder-open.png);
+  background-image: url(./../../assets/img/folder-open.png);
 }
 .icon.file-text {
-  background-image: url(../../../assets/img/file-text.png);
+  background-image: url(../../assets/img/file-text.png);
 }
 </style>
