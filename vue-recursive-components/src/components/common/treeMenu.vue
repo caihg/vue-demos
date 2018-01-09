@@ -1,11 +1,10 @@
 <template>
   <li>
     <span @click="toggle">
-      <i v-if="isFolder" class="icon" :class="[open ? 'folder-open': 'folder']"></i>
-      <i v-if="!isFolder" class="icon file-text"></i>
+      <i :class="['icon', (isFolder || isDynamicFolder) ? folderIcon : 'file-text']"></i>
       {{ model.menuName }}
     </span>
-    <ul v-show="open" v-if="isFolder">
+    <ul v-if="isOpen">
       <tree-menu v-for="item in model.children" :key="item.id" :model="item"></tree-menu>
     </ul>
   </li>
@@ -14,21 +13,42 @@
 <script>
 export default {
   name: 'treeMenu',
-  props: ['model'],
-  data() {
+  props: {
+    model: Object,
+    subMenuData: Object
+  },
+  data () {
     return {
-      open: false
+      folderIcon: 'folder',
+      isDynamicFolder: false,
+      isOpen: false
     }
   },
   computed: {
-    isFolder() {
-      return this.model.children && this.model.children.length
+    isFolder () {
+      return !!(this.model.children && this.model.children.length)
+    }
+  },
+  watch: {
+    isDynamicFolder () {
+      this.isOpen = true
+      this.folderIcon = 'folder-open'
     }
   },
   methods: {
-    toggle: function() {
-      if (this.isFolder) {
-        this.open = !this.open
+    toggle () {
+      const subMenuData = this.subMenuData
+
+      if (subMenuData && (this.model.id === subMenuData.parentId && subMenuData.list) && !this.model.children) {
+        this.model.children = subMenuData.list
+        this.isDynamicFolder = !!(this.model.children && this.model.children.length)
+        this.isOpen = true
+        this.folderIcon = 'folder-open'
+      }
+
+      if (this.isFolder || this.isDynamicFolder) {
+        this.isOpen = !this.isOpen
+        this.folderIcon = this.isOpen ? 'folder-open' : 'folder'
       }
     }
   }
