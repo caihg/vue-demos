@@ -37,11 +37,12 @@ export default {
   },
   methods: {
     toggle () {
+      const menuData = this.model
       const subMenuData = this.subMenuData
 
-      if (subMenuData && (this.model.id === subMenuData.parentId && subMenuData.list) && !this.model.children) {
-        this.model.children = subMenuData.list
-        this.isDynamicFolder = !!(this.model.children && this.model.children.length)
+      if (subMenuData && (menuData.id === subMenuData.parentId && subMenuData.list) && !menuData.children) {
+        menuData.children = subMenuData.list
+        this.isDynamicFolder = !!(menuData.children && menuData.children.length)
         this.isOpen = true
         this.folderIcon = 'folder-open'
       }
