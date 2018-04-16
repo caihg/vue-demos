@@ -1,9 +1,9 @@
 <template>
-  <ul>
+  <ul class="tree-menu">
     <li v-for="(item, index) in data">
       <span @click="toggle(item, index)">
-        <i :class="['icon', item.children && item.children.length ? folderIconList[index] : 'file-text']"></i>
-        {{ item.menuName }}
+        <i :class="['icon', item.children && item.children.length ? folderIconList[index] : 'file-text', loading ? loadingIconList[index] : '']"></i>
+        {{ item[name] || item.menuName }}
       </span>
       <tree-menu v-if="scope[index]" :data="item.children"></tree-menu>
     </li>
@@ -14,11 +14,14 @@
 export default {
   name: 'treeMenu',
   props: {
-    data: Array
+    data: Array,
+    name: String,
+    loading: Boolean
   },
   data () {
     return {
       folderIconList: [],
+      loadingIconList: [],
       scope: {}
     }
   },
@@ -30,28 +33,45 @@ export default {
     });
   },
   methods: {
+    doTask (index) {
+      this.$set(this.scope, index, !this.scope[index]);
+      this.folderIconList[index] = this.scope[index] ? 'folder-open' : 'folder';
+    },
     toggle (item, index) {
-      this.$emit('getSubMenu', item);
+      this.loadingIconList = [];
 
       if (item.children && item.children.length) {
-        this.$set(this.scope, index, !this.scope[index]);
-        this.folderIconList[index] = this.scope[index] ? 'folder-open' : 'folder';
+        this.doTask(index);
+      } else {
+        this.loadingIconList[index] = 'loading';
+
+        this.$emit('getSubMenu', item, (subMenuList) => {
+          if (subMenuList && subMenuList.length) {
+            this.doTask(index);
+          }
+        });
       }
     }
   }
 }
 </script>
 
-<style>
-ul {
+<style scoped>
+.tree-menu {
   list-style: none;
 }
-i.icon {
+.tree-menu li {
+  line-height: 2;
+}
+.tree-menu li span {
+  cursor: default;
+}
+.icon {
   display: inline-block;
   width: 15px;
   height: 15px;
   background-repeat: no-repeat;
-  vertical-align: middle;
+  vertical-align: -2px;
 }
 .icon.folder {
   background-image: url(/src/assets/folder.png);
@@ -62,7 +82,8 @@ i.icon {
 .icon.file-text {
   background-image: url(/src/assets/file-text.png);
 }
-.tree-menu li {
-  line-height: 1.5;
+.icon.loading {
+  background-image: url(/src/assets/loading.gif);
+  background-size: 15px;
 }
 </style>
